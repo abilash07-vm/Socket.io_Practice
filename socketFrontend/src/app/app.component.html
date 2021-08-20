@@ -1,0 +1,19 @@
+<div class="container-fluid">
+  <div class="row">
+    <ul id="messages">
+      <li *ngFor="let message of messages">{{ message }}</li>
+    </ul>
+  </div>
+  <div class="row">
+    <div class="col-lg-6">
+      <form>
+        <div class="input-group">
+          <input id="m" autocomplete="off" name="message" type="text" [(ngModel)]="val" class="form-control" placeholder="Message..." aria-label="Message...">
+          <span class="input-group-btn">
+            <button class="btn btn-secondary" type="submit" (click)="onSend()">Send</button>
+          </span>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
