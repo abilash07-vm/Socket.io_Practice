@@ -9,10 +9,15 @@ server.listen(PORT,()=>{
 })
 
 io.on('connection',(socket)=>{
-    io.emit('message',{"message":"A user connected"})
+    let room=''
+    socket.on('join',(room)=>{
+        socket.join(room);
+        io.in(room).emit('message',{"message": `A user joined in ${room} room `})
+    })
+
     socket.on('message',(data)=>{
         console.log('message logged!!');
-        io.emit('message',data);
+        io.in(data.room).emit('message',data);
     })
     socket.on('disconnect',()=>{
         console.log('a user disconnected');
